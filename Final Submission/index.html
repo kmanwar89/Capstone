@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DK IoT Websocket Example</title>
+	<p>This is an example website showing a websocket connection between this client machine and our Raspberry Pi</p>
+    <style>
+      #count {
+        font: bold 15px arial;
+        margin: auto;
+        padding: 10px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div id="count"></div>
+
+    <script>
+      var ws = new WebSocket('ws://54.237.212.2:1010');
+      ws.onopen = function() {
+        document.body.style.backgroundColor = '#cfc';
+      };
+      ws.onclose = function() {
+        document.body.style.backgroundColor = null;
+      };
+      ws.onmessage = function(event) {
+        document.getElementById('count').textContent = event.data;
+	console.log(event.data);
+      };
+    </script>
+
+  </body>
+</html>
