@@ -7,5 +7,5 @@ import requests
 print("Verifying the data...")
 x = 1
 while True:
-	r = requests.get('http://54.237.212.2:3000/api/DKIOTmodels/')
+	r = requests.get('http://192.168.1.100:3000/api/DKIOTmodels/')
 	print(r.text)
