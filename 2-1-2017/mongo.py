@@ -29,9 +29,9 @@ import time
 from pymongo import MongoClient
 
 # MongoDB stuff
-connection = MongoClient(host='192.168.99.180',port=27017)
+#connection = MongoClient(host='192.168.99.180',port=27017)
 
-db = connection.DKFinal.pistats
+#db = connection.DKFinal.pistats
 
 # Instantiate a SenseHat() object
 sense = SenseHat()
@@ -54,15 +54,15 @@ while True:
 	# MQTT Messages
 	msgs=[{'topic':"Capstone", 'payload':"The temperature is now"+" "\
 		 + format(tempC, '.2f')+" degrees F"}]
-	publish.multiple(msgs, hostname="192.168.99.73")
+	publish.multiple(msgs, hostname="192.168.99.75")
 	time.sleep(3)
 
 	# Push data to MongoDB as a "shadow copy"
-	test_data = {"Temperature": format(tempC, '.2f'), \
-		     "Pressure": format(psi, '.2f'), \
-		     "Humidity": format(humidity, '.2f')}
-	db.insert(test_data)
-	connection.close()
+#	test_data = {"Temperature": format(tempC, '.2f'), \
+#		     "Pressure": format(psi, '.2f'), \
+#		     "Humidity": format(humidity, '.2f')}
+#	db.insert(test_data)
+#	connection.close()
 
 
 
