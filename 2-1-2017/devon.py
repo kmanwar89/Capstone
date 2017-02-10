@@ -4,7 +4,7 @@ import datetime
 import pprint
 
 from pymongo import MongoClient
-client = MongoClient()
+client = MongoClient(host='192.168.99.75',port=27017)
 
 db = client['DKFinal']
 collection = db['pistats']

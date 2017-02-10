@@ -7,7 +7,7 @@
 # v1.0
 from pymongo import MongoClient
 
-connection = MongoClient(host='192.168.99.180',port=27017)
+connection = MongoClient(host='192.168.99.75',port=27017)
 
 db = connection.test.testcollection
 
