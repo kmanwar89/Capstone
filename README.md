@@ -5,6 +5,9 @@ JMU Senior Capstone Files
 * Files have been updated to reflect changes made on 11/27/2016
   * This includes a working websocket implementation using *websocketd*
   * Files not included are those contained on the Raspberry Pi
-S
+
 ## Update 11/29/2016
 * Python code files updated in the "Pi Files" folder with comments
+
+## Update 2/12/2017
+* Re-organized all files and performed fresh Raspbian install on Raspberry Pi
