@@ -1,13 +1,59 @@
-# Capstone
-JMU Senior Capstone Files
+## Capstone
+JMU Senior Capstone Files Spring 2017
 
-## Update 11/28/2016
+Kadar Anwar & Devon Richards
+
+### Update 11/28/2016
 * Files have been updated to reflect changes made on 11/27/2016
   * This includes a working websocket implementation using *websocketd*
   * Files not included are those contained on the Raspberry Pi
 
-## Update 11/29/2016
+### Update 11/29/2016
 * Python code files updated in the "Pi Files" folder with comments
 
-## Update 2/12/2017
+##### All files prior to February 2017 have been sorted and deleted. All code has been merged into current mongo.py file
+
+### 2/1/2017
+* devon.py - Devon's code for interfacing MongoDB & Python
+* mongo.py - Kadar's code for interfacing Python, MongoDB & MQTT. Pulls data
+from SenseHAT.
+
+### 2/7/2017
+* visualization.html - test file that helps us to understand how data can be
+visualized using D3.
+
+### 2/9/2017
+* brokercapturefiltered.pcapng - Broker PCAP capture (MongoDB & MQTT)
+* clientcapturefiltered.pcapng - Client PCAP capture (Websocket connection)
+
+### 2/10/2017
+* Wireshark captures for each of the MQTT client (Pi), MongoDB (on the web server)
+and client (websockets).
+
+* Note: Need to re-take captures on Pi in order to be able to view contents of
+packets; currently, any use of remote technology (VNC, SSH) masks the data.
+
+* index.html - file that demonstrates the use of Paho JavaScript MQTT library
+in order to create connection with MQTT broker. (Need this file from Devon)
+
+### 2/12/2017
 * Re-organized all files and performed fresh Raspbian install on Raspberry Pi
+
+### 2/13/2017
+* Old files removed/re-organized. Only current files used from here on out.
+* Removed individual dated folders -- instead, we will update this readme file
+with the date, and what was changed during that time.
+
+* http://www.hivemq.com/demos/websocket-client/ -- cool web client for MQTT that
+lets us test our configuration from a browser.
+
+* index3.html - code for enabling buttons that connect/disconnect to a topic.
+* index3.js - code that matches index3.html and enables button actions.
+* index2.html - Source:
+http://jpmens.net/2014/07/03/the-mosquitto-mqtt-broker-gets-websockets-support/.
+Just another HTML file linking JavaScript, Paho MQTT & HTML.
+
+* Additional Websocket server - Python implementation
+* mqtt-panel - another implementation to look at:
+https://github.com/fabaff/mqtt-panel
+* Home automation system we can maybe look into? : https://home-assistant.io/components/mqtt/
