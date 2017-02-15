@@ -34,7 +34,7 @@ and client (websockets).
 packets; currently, any use of remote technology (VNC, SSH) masks the data.
 
 * index.html - file that demonstrates the use of Paho JavaScript MQTT library
-in order to create connection with MQTT broker. (Need this file from Devon)
+in order to create connection with MQTT broker.
 
 ### 2/12/2017
 * Re-organized all files and performed fresh Raspbian install on Raspberry Pi
@@ -54,6 +54,5 @@ http://jpmens.net/2014/07/03/the-mosquitto-mqtt-broker-gets-websockets-support/.
 Just another HTML file linking JavaScript, Paho MQTT & HTML.
 
 * Additional Websocket server - Python implementation
-* mqtt-panel - another implementation to look at:
-https://github.com/fabaff/mqtt-panel
+* mqtt-panel - another implementation to look at: https://github.com/fabaff/mqtt-panel
 * Home automation system we can maybe look into? : https://home-assistant.io/components/mqtt/
