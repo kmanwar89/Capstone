@@ -1,37 +1,17 @@
 #!/usr/bin/python
 
-# Purpose: Gather Temp, Humidity & Pressure data from SenseHAT
-# sensor device, publish over an MQTT topic and send a shadow copy
-# to MongoDB for redundancy purposes.
+# Quick test file figuring out why MQTT doesn't work in web browser as of
+# 2-16-2017
 
 # Author: Kadar M. Anwar
 # Language: Python 3.5
-# Date: 11-27-2016
 # JMU ISAT Senior Capstone Project
-
-# v1.0 11/27/2016 - used update.py file as base, this file includes a loop to
-# allow for autonomous updates w/o user interaction.
-
-# v1.1 1/22/2017 - updated to incorporate MQTT publish messages rather than
-# API and HTTP-based messages
-
-# v1.2 1/30/2017 - updated to incorporate publishing MQTT messages to MongoDB 
-# as a form of "shadow copy" capability
-
-# v1.2a 1/30/2017 - cleaned up code a little bit, added unused code to the
-# bottom of the file.
 
 # Import required libraries
 from sense_hat import SenseHat
 import paho.mqtt.publish as publish
 import requests
 import time
-#from pymongo import MongoClient
-
-# MongoDB stuff
-#connection = MongoClient(host='192.168.99.75',port=27017)
-
-#db = connection.DKFinal.pistats
 
 # Instantiate a SenseHat() object
 sense = SenseHat()
@@ -54,7 +34,7 @@ while True:
 	# MQTT Messages
 	msgs=[{'topic':"Capstone", 'payload':"The temperature is now"+" "\
 		 + format(tempF, '.2f')+" degrees F"}]
-	publish.multiple(msgs, hostname="192.168.99.75")
+	publish.multiple(msgs, hostname="192.168.99.6")
 	time.sleep(2)
 
 	# Push data to MongoDB as a "shadow copy"
