@@ -25,4 +25,3 @@ client.loop_start()
 
 while True:
 	client.publish("Capstone", payload=tempF)
-
