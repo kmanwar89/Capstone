@@ -7,6 +7,13 @@
 
 import paho.mqtt.client as paho
 import time
+from sense_hat import SenseHat
+
+sense = SenseHat()
+x = 1
+while True:
+	tempC = sense.get_temperature()
+	tempF = (tempC * 1.8) + 32
 
 def on_publish(client, userdata, mid):
 	print("mid: "+str(mid))
@@ -17,5 +24,5 @@ client.connect("192.168.99.75", 1883)
 client.loop_start()
 
 while True:
-	temperature = 
-	
+	client.publish("Capstone", payload=tempF)
+

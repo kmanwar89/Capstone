@@ -56,3 +56,9 @@ Just another HTML file linking JavaScript, Paho MQTT & HTML.
 * Additional Websocket server - Python implementation
 * mqtt-panel - another implementation to look at: https://github.com/fabaff/mqtt-panel
 * Home automation system we can maybe look into? : https://home-assistant.io/components/mqtt/
+
+### 2/17/2017
+* Created Python scripts for stress testing system (clientstress.py & publishstress.py) - KA
+* Fixed mqttws31.js file -- had the wrong code in it.  This file is the Paho MQTT JavaScript library file and shouldn't be modified.
+* index2.html and Paho's MQTT web client were also tested with our configuration and confirmed as correctly working.
+* Website needs to be worked on -- combine the best features from the various examples available to us.
