@@ -54,7 +54,8 @@ while True:
 	# MQTT Messages
 	msgs=[{'topic':"Capstone", 'payload':"The temperature is now"+" "\
 		 + format(tempF, '.2f')+" degrees F"}]
-	publish.multiple(msgs, hostname="192.168.99.71")
+	publish.multiple(msgs, hostname="192.168.1.218")
+#	mqtt.publish("Capstone", payload=msgs, qos=1, retain=True)
 	time.sleep(2)
 
 	# Push data to MongoDB as a "shadow copy"
