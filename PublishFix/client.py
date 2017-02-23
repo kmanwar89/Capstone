@@ -1,3 +1,15 @@
+#!/usr/bin/python
+
+# Python MQTT Client
+
+# Purpose: This file is an MQTT client implementation using the Paho
+# MQTT Python library. Offers same functionality as mosquitto_sub.
+
+# Author: Kadar M. Anwar
+# Language: Python 3.5
+# Date: 2-22-2017
+# JMU ISAT Senior Capstone Project
+
 import paho.mqtt.client as mqtt
 
 # The callback for when the client receives a CONNACK response from the server.

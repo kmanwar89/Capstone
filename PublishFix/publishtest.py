@@ -20,7 +20,7 @@ def on_publish(client, userdata, mid):
 
 client = paho.Client()
 client.on_publish = on_publish
-client.connect("192.168.99.75", 1883)
+client.connect("192.168.1.218", 1883)
 client.loop_start()
 
 while True:

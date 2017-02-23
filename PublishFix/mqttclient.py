@@ -11,4 +11,4 @@ def on_connect(client, userdata, flags, rc):
 
 client = paho.Client()
 client.on_connect = on_connect
-client.connect("192.168.99.71", 1884)
+client.connect("192.168.1.218", 1883)
