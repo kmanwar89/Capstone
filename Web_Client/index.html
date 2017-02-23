@@ -18,7 +18,7 @@
 	<script type="text/javascript"  src="mqttws31.js"></script>
     <script>
 // Create a client instance
-client = new Paho.MQTT.Client("192.168.99.75", Number(1884), "clientId");
+client = new Paho.MQTT.Client("192.168.1.218", Number(1884), "clientId");
 
 // set callback handlers
 client.onConnectionLost = onConnectionLost;
@@ -26,10 +26,10 @@ client.onMessageArrived = onMessageArrived;
 
 // connect the client
 client.connect({
-onSuccess: onConnect, 
+onSuccess: onConnect,
 userName : "admin",
 password : "admin"})
-// 
+//
 
 
 // called when the client connects

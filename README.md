@@ -62,3 +62,9 @@ Just another HTML file linking JavaScript, Paho MQTT & HTML.
 * Fixed mqttws31.js file -- had the wrong code in it.  This file is the Paho MQTT JavaScript library file and shouldn't be modified.
 * index2.html and Paho's MQTT web client were also tested with our configuration and confirmed as correctly working.
 * Website needs to be worked on -- combine the best features from the various examples available to us.
+
+### 2/22/2017
+* Devon has Github access and can push/pull files easily
+* Both partners worked to figure out message persistence
+  * Have to add '-q #' to message while using mosquitto_clients to set QoS value
+  * QoS adds 4 packets of overhead per verification
