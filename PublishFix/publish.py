@@ -21,23 +21,20 @@ sense = SenseHat()
 # Connect to the broker
 client.connect("192.168.99.75", port=1883, keepalive=60)
 
-while True:
-	tempC = sense.get_temperature()
-	humidity = sense.get_humidity()
-	pressure = sense.get_pressure()
-	tempF = (tempC * 1.8) + 32
-	psi = (pressure * 0.0145038)
+tempC = sense.get_temperature()
+tempF = (tempC * 1.8) + 32
+#	humidity = sense.get_humidity()
+#	pressure = sense.get_pressure()
+#	psi = (pressure * 0.0145038)
 
 # Publish a message
-client.publish("Capstone", payload=tempF", qos=2)
+client.publish("Capstone", payload=tempF, qos=0)
 
 # Keep the connection open
 #client.loop_forever()
 
 # disconnect
 #client.disconnect()
-
-
 
 # while True:
 #     client = new MqttClient("tcp://192.168.99.71:1883", "ClientIdentifier");
