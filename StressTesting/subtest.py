@@ -5,18 +5,25 @@
 # Date: 2-16-2017
 # Python v3.4
 
+# v0.1 - initial code
+# v0.2 - 2/23/2017 - updated code for a simple loop with lots of subscriptions
+# 	to a single topic
+
 import paho.mqtt.client as paho
- 
-def on_subscribe(client, userdata, mid, granted_qos):
-    print("Subscribed: "+str(mid)+" "+str(granted_qos))
- 
-def on_message(client, userdata, msg):
-    print(msg.topic+" "+str(msg.qos)+" "+str(msg.payload))    
- 
+import time
+
 client = paho.Client()
-client.on_subscribe = on_subscribe
-client.on_message = on_message
 client.connect("192.168.99.75", 1883)
-client.subscribe("Capstone")
- 
-client.loop_forever()
+
+print("Beginning subscription stress test...")
+
+z = 0
+for x in range(0,1000):
+    for y in range(0,100):
+        client.subscribe("Capstone")
+        z+=1
+
+print("Sent", x*y, "packets out of", z, "total packets")
+#print("Subscribed to topic", x*y, "times")
+
+#client.loop_forever()
