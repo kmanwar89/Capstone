@@ -10,16 +10,26 @@
 # Date: 2-22-2017
 # JMU ISAT Senior Capstone Project
 
+from sense_hat import SenseHat
 import paho.mqtt.client as mqtt
 
 # Instantiate a Client object from the MQTT library
 client = mqtt.Client()
 
+sense = SenseHat()
+
 # Connect to the broker
-client.connect("192.168.99.42", port=1884, keepalive=60)
+client.connect("192.168.99.75", port=1883, keepalive=60)
+
+while True:
+	tempC = sense.get_temperature()
+	humidity = sense.get_humidity()
+	pressure = sense.get_pressure()
+	tempF = (tempC * 1.8) + 32
+	psi = (pressure * 0.0145038)
 
 # Publish a message
-client.publish("Capstone", payload="testtestest", qos=0)
+client.publish("Capstone", payload=tempF", qos=2)
 
 # Keep the connection open
 #client.loop_forever()
