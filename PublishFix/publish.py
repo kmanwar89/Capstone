@@ -15,6 +15,29 @@ import paho.mqtt.client as mqtt
 # Instantiate a Client object from the MQTT library
 client = mqtt.Client()
 
+# Connect to the broker
+client.connect("192.168.99.42", port=1884, keepalive=60)
+
+# Publish a message
+client.publish("Capstone", payload="testtestest", qos=0)
+
+# Keep the connection open
+#client.loop_forever()
+
+# disconnect
+#client.disconnect()
+
+
+
+# while True:
+#     client = new MqttClient("tcp://192.168.99.71:1883", "ClientIdentifier");
+#     client.connect();
+#     MqttMessage message = new MqttMessage();
+#     message.setPayload("A single message".getBytes());
+#     client.publish("Capstone", message);
+#client.disconnect();
+
+
 # SSL/TLS support, not currently used.
 # tls_set(ca_certs, certfile=None, keyfile=None, cert_reqs=ssl.CERT_REQUIRED,
 #     tls_version=ssl.PROTOCOL_TLSv1, ciphers=None)
@@ -31,25 +54,3 @@ client = mqtt.Client()
 # Do not use this function in a real system. Setting value to True means there is no point using encryption.
 #
 # Must be called before connect*).
-
-# Connect to the broker
-client.connect("192.168.1.218", port=1883, keepalive=60)
-
-# Keep the connection open
-#client.loop_forever()
-
-# Publish a message
-client.publish("Capstone", payload="testtestest", qos=0)
-
-# disconnect
-client.disconnect()
-
-
-
-# while True:
-#     client = new MqttClient("tcp://192.168.99.71:1883", "ClientIdentifier");
-#     client.connect();
-#     MqttMessage message = new MqttMessage();
-#     message.setPayload("A single message".getBytes());
-#     client.publish("Capstone", message);
-#client.disconnect();
