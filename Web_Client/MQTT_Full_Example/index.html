@@ -12,7 +12,7 @@
     var mqtt;
     var reconnectTimeout = 2000;
     var host = "192.168.99.75";
-    var port = 1884;
+    var port = 9883;
     var path = "/Capstone";
 
     function MQTTconnect() {
@@ -27,9 +27,13 @@
 	);
         var options = {
             timeout: 3,
-            useSSL: useTLS,
+            useSSL: true,
             cleanSession: cleansession,
             onSuccess: onConnect,
+	    hosts : ["dk"],
+	    ports : [9883],
+	    userName : "admin",
+	    password : "admin",
             onFailure: function (message) {
                 $('#status').val("Connection failed: " + message.errorMessage + "Retrying");
                 setTimeout(MQTTconnect, reconnectTimeout);
@@ -40,8 +44,8 @@
         mqtt.onMessageArrived = onMessageArrived;
 
         if (username != null) {
-            options.userName = username;
-            options.password = password;
+            options.userName = admin;
+            options.password = admin;
         }
         console.log("Host="+ host + ", port=" + port + ", path=" + path + " TLS = " + useTLS + " username=" + username + " password=" + password);
         mqtt.connect(options);
