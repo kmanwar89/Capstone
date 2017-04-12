@@ -15,11 +15,13 @@
 # v1.1 1/22/2017 - updated to incorporate MQTT publish messages rather than
 # API and HTTP-based messages
 
-# v1.2 1/30/2017 - updated to incorporate publishing MQTT messages to MongoDB 
+# v1.2 1/30/2017 - updated to incorporate publishing MQTT messages to MongoDB
 # as a form of "shadow copy" capability
 
 # v1.2a 1/30/2017 - cleaned up code a little bit, added unused code to the
 # bottom of the file.
+
+# 4/9/2017 - MongoDB is no longer being used in architecture as of February, 2017. Moving this file into the 'Old Capstone Files' folder.
 
 # Import required libraries
 from sense_hat import SenseHat

@@ -6,8 +6,11 @@
 
 # Author: Kadar M. Anwar
 # Language: bash
-# Date: 2-22-2017
-# JMU ISAT Senior Capstone Project
+# Dependency: mosquitto-clients
+# ISAT Senior Capstone Project
+
+# v0.1 - 2/22/2017 - Initial code
+# v0.2 - 4/9/2017 - Updated code and description
 
 while :
 do
