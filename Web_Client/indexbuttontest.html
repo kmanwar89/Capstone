@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>DK IoT Client WebApp</title>
+</head>
+<body>
+  <script type="text/javascript"  src="mqttws31.js"></script>
+  <form name="connack">
+    Enter the broker IP: <input type="text" name="brokerIP"><br>
+    Enter port to connect to: <input type="text" name="portnum"><br>
+    <input type="button" onclick="client.connect1()" value="Connect">
+    <br>
+  </form>
+
+  <form name="suback">
+    Enter topic to subscribe to: <input type="text" name="topicsub"><br>
+    <input type="button" onclick="client.subscribe1()" value="Subscribe">
+  </form>
+
+    <script>
+  // Create a client instance
+  client = new Paho.MQTT.Client("192.168.99.75", Number(9883), "clientId");
+
+  // set callback handlers
+  client.onConnectionLost = onConnectionLost;
+  client.onMessageArrived = onMessageArrived;
+
+  // connect the client
+
+  function client.connect1({
+  cleanSession : false,
+  onSuccess: onConnect,
+  hosts : ["brokerIP"],
+  ports : ["portnum"],
+  useSSL : true,
+  userName : "admin",
+  password : "admin"})
+  //
+
+  client.connect({
+  cleanSession : false,
+  onSuccess: onConnect,
+  hosts : ["dk"],
+  ports : [9883],
+  useSSL : true,
+  userName : "admin",
+  password : "admin"})
+  //
+
+
+  // called when the client connects
+  function onConnect() {
+  // Once a connection has been made, make a subscription and send a message.
+  console.log("onConnect");
+  client.subscribe("Capstone" , {qos : 2});
+  message = new Paho.MQTT.Message("Hello");
+  message.destinationName = "Capstone";
+  client.send(message);
+  }
+
+  // called when the client loses its connection
+  function onConnectionLost(responseObject) {
+  if (responseObject.errorCode !== 0) {
+    console.log("onConnectionLost:"+responseObject.errorMessage);
+  }
+  }
+
+  // called when a message arrives
+  function onMessageArrived(message) {
+  console.log("onMessageArrived:"+message.payloadString);
+  console.log("Topic:         " + message.destinationName);
+  console.log("QoS:           " + message.qos);
+  console.log("Retained:      " + message.retained);
+  }
+    </script>
+
+
+</body>
+</html>
