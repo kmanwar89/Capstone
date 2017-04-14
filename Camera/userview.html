@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DKSecureThings User View</title>
+
+    <div id="greet">
+	<p>Greetings User!</p>
+    </div>
+
+    <div>
+      <p id="payload"><p>
+      <p id ="topic"><p>
+    </div>
+
+
+  <style>
+  div {text-align: center;
+  border-bottom-style: ridge;
+  border: 2px solid;
+  border-radius: 2em;
+  border-color: green;
+  margin: 25px;
+  padding: 15px;
+  background: lightblue;
+  background-clip: padding-box;
+  }
+  body {background-image: url("space.jpg");}
+  </style>
+  </head>
+  <body>
+
+  <script type="text/javascript" src="../sources/jquery.min.js"></script>
+	<script type="text/javascript"  src="../sources/mqttws31.js"></script>
+    <script>
+// Create a client instance
+client = new Paho.MQTT.Client("192.168.50.75", Number(9883), "clientId");
+
+// set callback handlers
+client.onConnectionLost = onConnectionLost;
+client.onMessageArrived = onMessageArrived;
+// connect the client
+
+client.connect({
+cleanSession : false,
+onSuccess: onConnect,
+hosts : ["dk"],
+ports : [9883],
+useSSL : true,
+userName : "admin",
+password : "admin"})
+//
+
+
+// called when the client connects
+function onConnect() {
+  // Once a connection has been made, make a subscription and send a message.
+  console.log("onConnect");
+  client.subscribe("MyHome" , {qos : 2});
+  message = new Paho.MQTT.Message("");
+  message.destinationName = "MyHome";
+  client.send(message);
+}
+
+// called when the client loses its connection
+function onConnectionLost(responseObject) {
+  if (responseObject.errorCode !== 0) {
+    console.log("onConnectionLost:"+responseObject.errorMessage);
+  }
+}
+
+// called when a message arrives
+function onMessageArrived(message) {
+  console.log("Your current temperature:   "+message.payloadString);
+  console.log("You are currently subscribed to:    " + message.destinationName);
+  console.log("QoS:           " + message.qos);
+  console.log("Retained:      " + message.retained);
+  document.getElementById("payload").innerHTML = ("Your current temperature: "+ message.payloadString);
+  document.getElementById("topic").innerHTML = ("You are currently subscribed to: " + message.destinationName);
+}
+
+
+// document.getElementById("payload").innerHTML("Your current temperature:   "+message.payloadString);
+// document.getElementById("topic").innerHTML("You are currently subscribed to:    " + message.destinationName);
+    </script>
+
+
+    <div id='return'>
+      <A HREF="../index.html"> Return to the View Select Screen </A>
+    </div>
+
+  </body>
+</html>
