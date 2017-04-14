@@ -27,6 +27,7 @@ client = mqtt.Client()
 
 # Connect to the broker over MQTT port
 #client.connect(host, port=1883, keepalive=60)
+client.username_pw_set(admin, password=admin)
 client.connect("192.168.99.135", port=1883, keepalive=60)
 client.loop_start() # Keep the connection open
 

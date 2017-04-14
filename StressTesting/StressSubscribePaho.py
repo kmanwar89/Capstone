@@ -12,6 +12,8 @@
 import paho.mqtt.client as paho
 import time
 
+client.username_pw_set(admin, password=admin)
+
 client = paho.Client()
 client.connect("192.168.99.75", 1883)
 
