@@ -24,7 +24,8 @@ sense = SenseHat()
 
 # Connect to the broker over MQTT port
 client.username_pw_set("admin", "admin")
-client.connect("192.168.99.75", port=1883, keepalive=60)
+client.tls_set("ca.crt")
+client.connect("192.168.99.75", port=8883, keepalive=60)
 client.loop_start() # Keep the connection open
 
 
