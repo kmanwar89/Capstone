@@ -3,7 +3,7 @@ import base64
 
 def on_connect(client, userdata, rc):
     print("Connect with result code " + str(rc))
-    client.subscribe("Capstone")
+    client.subscribe("MyHome")
 
 def on_message(client, userdata, msg):
     #print("Topic : " , msg.topic + "\n Image : " + msg.payload)
@@ -31,7 +31,7 @@ def on_message(client, userdata, msg):
 # Instantiate the client object, connect to broker &
 # loop forever
 client = mqtt.Client()
-client.connect("192.168.99.135", 1883, 60)
+client.connect("192.168.99.75", 1883, 60)
 client.on_connect = on_connect
 client.on_message = on_message
 client.loop_forever()

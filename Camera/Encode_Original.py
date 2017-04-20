@@ -7,7 +7,7 @@ import base64
 client = mqtt.Client()
 
 # Connect to the broker over MQTT port
-client.connect("192.168.99.135", port=1883, keepalive=60)
+client.connect("192.168.99.75", port=1883, keepalive=60)
 
 # Picture Processing
 f=open("abc.jpg","rb") # file is in the same directory, relative path
@@ -15,7 +15,7 @@ fileContent=f.read()
 byteArr = base64.b64encode(fileContent)
 
 # Publish a message to the "Capstone" topic
-client.publish("Capstone", byteArr, qos=0)
+client.publish("MyHome", byteArr, qos=0)
 
  # Keep the connection open
 client.loop_start()
