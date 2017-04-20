@@ -1,5 +1,19 @@
-Flow:
+Screenshot of base64 encoded text (and a text file), along with a wireshark cap
+ture showing MQTT packets being published
 
+
+encode.py contains code to read the JPG file as bytes, encode the bytes to Base64
+and publish the message to broker while also printing the output in a terminal
+(Note: the b' and ' characters at the beginning and end are /not/ sent via MQTT
+so there is no need to remove them for MQTT purposes)
+
+4-20-2017
+Encode.py correctly accepts inputs of broker IP address, topic and filename to
+encode as base64.
+
+
+Flow
+----
 Send image from Camera to Raspberry Pi via FTP
 Raspberry Pi stores the image in a new folder with a date and time stamp
 Python encode script needs to locate the most recently changed file and perform the encode/transmission via MQTT on it

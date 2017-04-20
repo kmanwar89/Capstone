@@ -1,0 +1,8 @@
+Wireshark captures collected using capture filters, but what are they for?
+--------------------------------------------------------------------------
+Created 4/13/2017 around 5PM
+
+brokercapturefiltered.pcap
+clientcapturefilter.pcap
+
+Need to figure out what the rest of the files are for --- 4/20/2017
