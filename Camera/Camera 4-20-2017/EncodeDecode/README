@@ -1,0 +1,4 @@
+Screenshot of base64 encoded text (and a text file), along with a wireshark capture showing MQTT packets being published
+
+
+encode.py contains code to read the JPG file as bytes, encode the bytes to Base64 and publish the message to broker while also printing the output in a terminal (Note: the b' and ' characters at the beginning and end are /not/ sent via MQTT so there is no need to remove them for MQTT purposes)
