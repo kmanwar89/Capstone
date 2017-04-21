@@ -21,6 +21,7 @@ client = mqtt.Client()
 
 # Connect to the broker over MQTT port
 #client.username_pw_set("admin","admin")
+client.username_pw_set("admin","admin")
 client.connect(host, port=1883, keepalive=60)
 
 print("Publishing picture to", topic)
