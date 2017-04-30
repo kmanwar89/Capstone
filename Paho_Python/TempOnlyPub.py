@@ -24,25 +24,24 @@ sense = SenseHat()
 
 # Connect to the broker over MQTT port
 client.username_pw_set("admin", "admin")
-client.tls_set("ca.crt")
-client.connect("DK", port=8883, keepalive=60)
+client.connect("192.168.98.75", port=1883, keepalive=60)
 client.loop_start() # Keep the connection open
 
 
 # Publish a message to the "Capstone" topic
 running = True
 while running:
-
 	# Get temperature from sensor and convert it to Farenheit
-	tempF = format(((sense.get_temperature() * 1.8) + 32), '.2f')
+	tempF = format(((sense.get_temperature() * 1.8) + 32 - 20), '.2f')
 	humidity = format(sense.get_humidity(), '.2f')
 	psi = format(sense.get_pressure() * 0.0145038, '.2f')
 
 	# Send multiple values as a dictionary
-	data = {'Temperature (Farenheit)':tempF,'Humidity (% relative)':humidity,'Pressure (psi)':psi}
+	data = {'Temperature (Farenheit)':tempF}
 
 	# Publish the message to the Capstone topic
-	client.publish("Capstone", payload = str(data), qos=0)
+	client.publish("MyHome", payload = str(data), qos=0)
+	time.sleep(10)
 
 
 #	data = {'tempC':sense.get_temperature(), 'humidity':sense.get_humidity()}
