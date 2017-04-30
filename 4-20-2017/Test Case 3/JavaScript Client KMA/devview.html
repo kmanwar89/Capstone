@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>DKSecureThings Dev View</title>
+</head>
+<body>
+  <script type="text/javascript"  src="../sources/mqttws31.js"></script>
+  <script type="text/javascript" src="../sources/jquery.min.js"></script>
+  <style>
+  div {text-align: center;
+  border-bottom-style: groove;
+  border: 2px solid;
+  border-radius: 2em;
+  margin: 25px;
+  padding: 15px;
+  }
+  </style>
+  <div>
+    <h1> DK SecureThings </h1>
+  </div>
+  <div id= 'con'>
+  <form>
+    Enter the broker IP: <input type="text" id="brokerIP"><br>
+    Enter port to connect to: <input type="text" id="portnum"><br>
+    Enter username: <input type="text" id="usernamein"><br>
+    Enter password: <input type="text" id="passwordin"><br>
+    Use SSL/TLS: <input type="checkbox" id="TLS"> Clean Session: <input type="checkbox" id="cleanSessionInput">
+  </form>
+<input type="button" name="connectbttn" onclick="webclient.connect();" value="Connect">
+<input type="button" name="disconnectbttn" onclick="webclient.disconnect();" value="Disconnect">
+<p id="con?"></p>
+  </div>
+
+  <div id= 'sub'>
+  <form>
+    Enter topic to subscribe to: <input type="text" id="topicsub" ><br>
+  </form>
+<input type="button" onclick="webclient.subscribe($('#topicsub').val())" value="Subscribe">
+<p id="sub?"><p>
+<p id="payload"></p>
+<p id="topic"></p>
+<p id="QoS"></p>
+<p id="Retained"></p>
+  </div>
+
+  <div id='return'>
+    <A HREF="../index.html"> Return to the View Select Screen </A>
+  </div>
+
+    <script>
+  // connect the client
+  var webclient = {
+  'client' :null,
+  'lastMessageId': 1,
+  'lastSubId': 1,
+  'subscriptions': [],
+  'messages': [],
+  'connected': false,
+
+        'connect' : function(){
+          var hosts = $('#brokerIP').val();
+          var ports = parseInt($('#portnum').val());
+          var cleanSession = $('#cleanSessionInput').is(':checked');
+          var ssl = $('#sslInput').is(':checked');
+          var userName = $('#usernamein').val();
+          var password = $('#passwordin').val();
+
+          this.client = new Paho.MQTT.Client(hosts, ports, "clientId");
+
+          // set callback handlers
+          this.client.onConnectionLost = this.onConnectionLost;
+          this.client.onMessageArrived = this.onMessageArrived;
+
+          var options = {
+            timeout: 3,
+            cleanSession: cleanSession,
+            useSSL: ssl,
+            userName : userName,
+            password : password,
+            mqttVersion : 3,
+            onSuccess: this.onConnect,
+            onFailure: this.onFail
+            };
+
+            this.client.connect(options);
+          },
+
+          // called when the client connects
+          'onConnect' : function(){
+          // Once a connection has been made, make a subscription and send a message.
+          webclient.connected = true;
+          document.getElementById("con?").innerHTML = ("Connected Successfully");
+          },
+
+          'onFail' : function(message){
+            webclient.connected = false;
+            console.log("error: " + message.errorMessage);
+          },
+
+          // called when a message arrives
+          'onMessageArrived' : function(message) {
+          document.getElementById("payload").innerHTML = ("A message has arrived for you: "+message.payloadString);
+          document.getElementById("topic").innerHTML = ("Topic:         " + message.destinationName);
+          document.getElementById("QoS").innerHTML = ("QoS:           " + message.qos);
+          document.getElementById("Retained").innerHTML = ("Retained:      " + message.retained);
+          },
+
+          // disconnect from the server
+          'disconnect' : function (){
+              this.client.disconnect();
+              document.getElementById("con?").innerHTML = ("You have disconnected successfully");
+          },
+
+          'subscribe' : function(topic){
+              this.client.subscribe(topic, {qos: 2});
+              document.getElementById("sub?").innerHTML = ("You have subscribed to " + $('#topicsub').val())
+          },
+
+          // called when the client loses its connection
+          'onConnectionLost' : function(responseObject) {
+          if (responseObject.errorCode !== 0) {
+            console.log("onConnectionLost:"+responseObject.errorMessage);
+          }
+          },
+};
+
+    </script>
+
+
+</body>
+</html>
